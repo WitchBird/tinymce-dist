@@ -9585,11 +9585,13 @@ define("tinymce/dom/ScriptLoader", [
 
 				// No scripts are currently loading then execute all pending queue loaded callbacks
 				if (!loading) {
-					each(queueLoadedCallbacks, function(callback) {
-						callback.func.call(callback.scope);
-					});
-
-					queueLoadedCallbacks.length = 0;
+					try {
+						each(queueLoadedCallbacks, function(callback) {
+							callback.func.call(callback.scope);
+						});
+					} finally {
+						queueLoadedCallbacks.length = 0;
+					}
 				}
 			};
 
