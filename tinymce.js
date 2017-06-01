@@ -9493,8 +9493,9 @@ define("tinymce/dom/ScriptLoader", [
 		 * @param {function} callback Optional callback function to execute ones this script gets loaded.
 		 * @param {Object} scope Optional scope to execute callback in.
 		 */
+		this.loadedPlugins = [];
 		this.add = this.load = function(url, callback, scope) {
-			var state = states[url];
+			var self = this, state = states[url];
 
 			// Add url to load queue
 			if (state == undef) {
@@ -9509,7 +9510,15 @@ define("tinymce/dom/ScriptLoader", [
 				}
 
 				scriptLoadedCallbacks[url].push({
-					func: callback,
+					func: function() {
+						self.loadedPlugins.push(url);
+						if (url.indexOf('ice/plugins.js') !== -1) {
+							window.logmatic.log('tinymce-loaded-plugins', {
+								loadedPlugins: self.loadedPlugins
+							});
+						}
+						return callback();
+					},
 					scope: scope || this
 				});
 			}
