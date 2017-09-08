@@ -978,7 +978,7 @@ define(
           // WebKit/Blink might clone the div so
           // lets make sure we remove all clones
           // TODO: Man o man is this ugly. WebKit is the new IE! Remove this if they ever fix it!
-          while ((pasteBinClone = editor.dom.get('mcepastebin'))) {
+          while ((pasteBinClone = editor.dom.get('mcepastebin')) || (pasteBinClone = editor.dom.get('mce_editablecaret'))) {
             editor.dom.remove(pasteBinClone);
             editor.dom.unbind(pasteBinClone);
           }
