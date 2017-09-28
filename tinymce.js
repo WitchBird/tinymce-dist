@@ -10470,8 +10470,10 @@ define(
 
             // Add scroll offsets from documentElement or body since IE with the wrong box model will use d.body and so do WebKit
             // Also remove the body/documentelement clientTop/clientLeft on IE 6, 7 since they offset the position
-            x = pos.left + (doc.documentElement.scrollLeft || body.scrollLeft) - rootElm.clientLeft;
-            y = pos.top + (doc.documentElement.scrollTop || body.scrollTop) - rootElm.clientTop;
+            // x = pos.left + (doc.documentElement.scrollLeft || body.scrollLeft) - rootElm.clientLeft;
+            // y = pos.top + (doc.documentElement.scrollTop || body.scrollTop) - rootElm.clientTop;
+            x = pos.left;
+            y = pos.top;
 
             return { x: x, y: y };
           }
