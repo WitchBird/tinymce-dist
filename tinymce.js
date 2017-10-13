@@ -4721,14 +4721,18 @@ define(
               return hook.get(elm);
             }
 
-            if (elm.ownerDocument.defaultView) {
-              try {
-                return elm.ownerDocument.defaultView.getComputedStyle(elm, null).getPropertyValue(dashed(name));
-              } catch (ex) {
-                return undef;
+            if (elm) {
+              if (elm.ownerDocument.defaultView) {
+                try {
+                  return elm.ownerDocument.defaultView.getComputedStyle(elm, null).getPropertyValue(dashed(name));
+                } catch (ex) {
+                  return undef;
+                }
+              } else if (elm.currentStyle) {
+                return elm.currentStyle[camel(name)];
               }
-            } else if (elm.currentStyle) {
-              return elm.currentStyle[camel(name)];
+            } else {
+              return undef;
             }
           }
         }
@@ -11747,19 +11751,21 @@ define(
 
           // No scripts are currently loading then execute all pending queue loaded callbacks
           if (!loading) {
-            each(queueLoadedCallbacks, function (callback) {
-              if (failures.length === 0) {
-                if (isFunction(callback.success)) {
-                  callback.success.call(callback.scope);
+            try {
+              each(queueLoadedCallbacks, function (callback) {
+                if (failures.length === 0) {
+                  if (isFunction(callback.success)) {
+                    callback.success.call(callback.scope);
+                  }
+                } else {
+                  if (isFunction(callback.failure)) {
+                    callback.failure.call(callback.scope, failures);
+                  }
                 }
-              } else {
-                if (isFunction(callback.failure)) {
-                  callback.failure.call(callback.scope, failures);
-                }
-              }
-            });
-
-            queueLoadedCallbacks.length = 0;
+              });
+            } finally {
+              queueLoadedCallbacks.length = 0;
+            }
           }
         };
 
@@ -37994,14 +38000,16 @@ define(
           delete self.delegates;
         }
 
-        if (!self.inline) {
-          self.getBody().onload = null;
-          self.dom.unbind(self.getWin());
-          self.dom.unbind(self.getDoc());
-        }
+        if (self.dom) {
+          if (!self.inline) {
+            self.getBody().onload = null;
+            self.dom.unbind(self.getWin());
+            self.dom.unbind(self.getDoc());
+          }
 
-        self.dom.unbind(self.getBody());
-        self.dom.unbind(self.getContainer());
+          self.dom.unbind(self.getBody());
+          self.dom.unbind(self.getContainer());
+        }
       }
     };
 
