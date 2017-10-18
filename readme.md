@@ -4,14 +4,17 @@ TinyMCE - The JavaScript Rich Text editor
 WATCHOUT
 --------
 
-When you update TinyMCE, be sure to keep those commits
+When you update TinyMCE, be sure to keep those commits:
 ```
-0b94580 (HEAD -> master, origin/master, origin/HEAD) FIX make the exception silent on loading scripts + add condition
+a25f3c7 FIX Check dom node preset on init editor
 1131b8a (tag: 4.6.4-patch-2, tag: 4.6.4-patch-1, fix-aria-function) extend condition to get specified font property
 78be7df gen min file from uglify bash script
 39a4ed5 add uglify bash script
 ```
-And update this readme file if you added more fixes or new features
+Update this readme file if you added more fixes or new features.
+
+Don't forget to run `./uglify.sh` after your work is done.
+
 
 
 Building TinyMCE
@@ -20,14 +23,6 @@ Install [Node.js](https://nodejs.org/en/) on your system.
 Clone this repository on your system
 ```
 $ git clone https://github.com/WitchBird/tinymce-dist
-```
-Open a console and go to the project directory.
-```
-$ cd tinymce/
-```
-Install all package dependencies.
-```
-$ npm install
 ```
 
 Contributing to the TinyMCE project
