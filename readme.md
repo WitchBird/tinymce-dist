@@ -1,45 +1,34 @@
 TinyMCE - The JavaScript Rich Text editor
 ==========================================
 
+WATCHOUT
+--------
+
+When you update TinyMCE, be sure to keep those commits
+```
+0b94580 (HEAD -> master, origin/master, origin/HEAD) FIX make the exception silent on loading scripts + add condition
+1131b8a (tag: 4.6.4-patch-2, tag: 4.6.4-patch-1, fix-aria-function) extend condition to get specified font property
+78be7df gen min file from uglify bash script
+39a4ed5 add uglify bash script
+```
+And update this readme file if you added more fixes or new features
+
+
 Building TinyMCE
 -----------------
 Install [Node.js](https://nodejs.org/en/) on your system.
 Clone this repository on your system
 ```
-$ git clone https://github.com/tinymce/tinymce.git
+$ git clone https://github.com/WitchBird/tinymce-dist
 ```
 Open a console and go to the project directory.
 ```
 $ cd tinymce/
 ```
-Install `grunt` command line tool globally.
-```
-$ npm i -g grunt-cli
-```
 Install all package dependencies.
 ```
 $ npm install
 ```
-Now, build TinyMCE by using `grunt`.
-```
-$ grunt
-```
-
-Build tasks
-------------
-`grunt`
-Lints, minifies, unit tests and creates release packages for TinyMCE.
-
-`grunt test`
-Runs all qunit tests on PhantomJS.
-
-`grunt --help`
-Displays the various build tasks.
-
-Bundle themes and plugins into a single file
----------------------------------------------
-`grunt bundle --themes=modern --plugins=table,paste`
-Minifies the core, adds the modern theme and adds the table and paste plugin into tinymce.min.js.
 
 Contributing to the TinyMCE project
 ------------------------------------
