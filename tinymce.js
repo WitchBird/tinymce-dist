@@ -11747,19 +11747,21 @@ define(
 
           // No scripts are currently loading then execute all pending queue loaded callbacks
           if (!loading) {
-            each(queueLoadedCallbacks, function (callback) {
-              if (failures.length === 0) {
-                if (isFunction(callback.success)) {
-                  callback.success.call(callback.scope);
+            try {
+              each(queueLoadedCallbacks, function (callback) {
+                if (failures.length === 0) {
+                  if (isFunction(callback.success)) {
+                    callback.success.call(callback.scope);
+                  }
+                } else {
+                  if (isFunction(callback.failure)) {
+                    callback.failure.call(callback.scope, failures);
+                  }
                 }
-              } else {
-                if (isFunction(callback.failure)) {
-                  callback.failure.call(callback.scope, failures);
-                }
-              }
-            });
-
-            queueLoadedCallbacks.length = 0;
+              });
+            } finally {
+              queueLoadedCallbacks.length = 0;
+            }
           }
         };
 
@@ -44933,7 +44935,7 @@ define(
       });
 
       scriptLoader.loadQueue(function () {
-        if (!editor.removed) {
+        if (!editor.removed && document.getElementById(editor.id)) {
           Init.init(editor);
         }
       }, editor, function (urls) {
