@@ -38979,13 +38979,13 @@ define(
         loadPlugins(editor.settings, suffix);
 
         scriptLoader.loadQueue(function () {
-          if (!editor.removed) {
+          if (!editor.removed && document.getElementById(editor.id)) {
             Init.init(editor);
           }
         }, editor, function (urls) {
           ErrorReporter.pluginLoadError(editor, urls[0]);
 
-          if (!editor.removed) {
+          if (!editor.removed && document.getElementById(editor.id)) {
             Init.init(editor);
           }
         });
