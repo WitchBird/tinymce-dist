@@ -15652,7 +15652,15 @@ define(
 
       // As of Chrome 34 / Safari 7.1 / FireFox 34, everyone except IE has the unprefixed function.
       // Still check for the others, but do it last.
-      else if (selectorType === STANDARD) return elem.matches(selector);
+      else if (selectorType === STANDARD) {
+        return (
+          elem.matches                  && elem.matches(selector)
+          || elem.msMatchesSelector     && elem.msMatchesSelector(selector)
+          || elem.webkitMatchesSelector && elem.webkitMatchesSelector(selector)
+          || elem.mozMatchesSelector    && elem.mozMatchesSelector(selector)
+          || false
+        );
+      }
       else if (selectorType === MSSTANDARD) return elem.msMatchesSelector(selector);
       else if (selectorType === WEBKITSTANDARD) return elem.webkitMatchesSelector(selector);
       else if (selectorType === FIREFOXSTANDARD) return elem.mozMatchesSelector(selector);
