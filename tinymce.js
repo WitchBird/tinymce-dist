@@ -39774,11 +39774,7 @@ define(
       }
 
       editor.on('setContent', function () {
-        if (editor.settings.automatic_uploads !== false) {
-          uploadImagesAuto();
-        } else {
-          scanForImages();
-        }
+        // Do not scanForImages
       });
 
       editor.on('RawSaveContent', function (e) {
