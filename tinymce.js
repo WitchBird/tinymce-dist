@@ -33328,11 +33328,6 @@ define(
       };
 
       editor.on('setContent', function () {
-        if (editor.settings.automatic_uploads !== false) {
-          uploadImagesAuto();
-        } else {
-          scanForImages();
-        }
       });
 
       editor.on('RawSaveContent', function (e) {
