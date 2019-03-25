@@ -1,6 +1,17 @@
 TinyMCE - The JavaScript Rich Text editor
 ==========================================
 
+TinyMCE Concord: Do not forget to cherry-pick those commits
+-----------------------------------------------------------
+```
+* 8f1cd9dff (HEAD -> tinymce-upgrade, tag: 4.7.1-patch-4) Do not scan for images on set content
+* c87160a6d (tag: 4.7.1-patch-3) FIX: tinymce selctor bug
+* 610c71d19 (tag: 4.7.1-patch-2) FIX: Check dom node preset on init editor
+* a27ec6d17 (tag: 4.7.1-patch-1) extend condition to get specified font property
+* 2eb0adf53 add gitignore
+* fe43edff3 add uglify bash script
+```
+
 Building TinyMCE
 -----------------
 Install [Node.js](https://nodejs.org/en/) on your system.
