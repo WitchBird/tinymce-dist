@@ -19267,8 +19267,8 @@ define(
             block_expand: true,
             deep: true
           },
-          { selector: 'span', attributes: ['style', 'class'], remove: 'empty', split: true, expand: false, deep: true },
-          { selector: '*', attributes: ['style', 'class'], split: false, expand: false, deep: true }
+          { selector: 'span', attributes: ['style'], remove: 'empty', split: true, expand: false, deep: true },
+          { selector: '*', attributes: ['style'], split: false, expand: false, deep: true }
         ]
       };
 
