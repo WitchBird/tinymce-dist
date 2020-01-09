@@ -28902,8 +28902,6 @@ define(
           return deleteEmptyBlockOrMoveToCef(rootNode, forward, from, to);
         } else if (forward && CaretUtils.isAfterContentEditableFalse(from)) {
           return Option.some(DeleteAction.moveToPosition(to));
-        } else if (forward === false && CaretUtils.isBeforeContentEditableFalse(from)) {
-          return Option.some(DeleteAction.moveToPosition(to));
         } else {
           return Option.none();
         }
