@@ -7338,7 +7338,12 @@ define(
 
       if (skinUrl) {
         args.skinUiCss = skinUrl + '/skin.min.css';
-        editor.contentCSS.push(skinUrl + '/content' + (editor.inline ? '.inline' : '') + '.min.css');
+
+        var inlineExt = editor.inline ? '.inline' : '';
+        var timestamp = new Date().getTime();
+        editor.contentCSS.push(
+          skinUrl + '/content' + inlineExt + '.min.css?rel=' + timestamp
+        );
       }
 
       ProgressState.setup(editor, theme);
