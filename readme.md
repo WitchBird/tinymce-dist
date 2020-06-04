@@ -1,6 +1,10 @@
 TinyMCE - JavaScript Library for Rich Text Editing
 ===================================================
 
+CONCORD
+-------
+Before any upgrade, take a look a each Concord commit (usually every commit from "add uglify bash script" to the last one) and check with tiny code source if it needs/can be applied
+
 Building TinyMCE
 -----------------
 Install [Node.js](https://nodejs.org/en/) on your system.
