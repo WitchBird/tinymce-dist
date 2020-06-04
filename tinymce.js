@@ -16310,13 +16310,6 @@
           return match;
         });
       };
-      editor.on('setContent', function () {
-        if (Settings.isAutomaticUploadsEnabled(editor)) {
-          uploadImagesAuto();
-        } else {
-          scanForImages();
-        }
-      });
       editor.on('RawSaveContent', function (e) {
         e.content = replaceBlobUris(e.content);
       });
